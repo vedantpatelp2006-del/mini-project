@@ -10,13 +10,18 @@ pipeline {
     }
 
     stages {
+	
+	  stage('Environment') {
+		steps {
+			bat """
+			copy /Y .env.example .env
+			"%PHP_PATH%" artisan key:generate --force
+			"""
+		}
+	  }
         
       stage('Test DB') {
             steps {
-                bat """
-                if exist database\\database.sqlite del database\\database.sqlite
-                "%PHP_PATH%" artisan migrate:fresh --seed
-                """
 				bat """
 				"%MYSQL_PATH%" -h localhost -u root -p%MYSQL_PASSWORD% -e "DROP DATABASE IF EXISTS laravel1;"
 				"%MYSQL_PATH%" -h localhost -u root -p%MYSQL_PASSWORD% -e "CREATE DATABASE laravel1 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
