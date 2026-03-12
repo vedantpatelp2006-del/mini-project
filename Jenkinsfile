@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     environment {
-        PHP_PATH       = 'D:\\Priya\\softwares\\php\\php.exe'
-        COMPOSER_PATH  = 'D:\\Priya\\softwares\\composer\\composer.bat'
-		MYSQL_PATH     = 'C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysql.exe' 
-		MYSQL_PASSWORD = 'mysql'
+        PHP_PATH       = 'C:\\Users\\MB540WS\\.config\\herd-lite\\bin\\php.exe'
+        COMPOSER_PATH  = 'C:\\Users\\MB540WS\\.config\\herd-lite\\bin\\composer.bat'
+		MYSQL_PATH     = 'C:\\Program Files\\MySQl\\MySQL Server 8.0\\bin\\mysql.exe' 
+		MYSQL_PASSWORD = 'admin'
     }
 
     stages {
@@ -13,8 +13,8 @@ pipeline {
 	  stage('Checkout') {
             steps {
                 git branch: 'main',
-                    credentialsId: 'github-raj123raj',
-                    url: 'https://github.com/raj123raj/inventory-mini'
+                    credentialsId: 'github-vedant',
+                    url: 'https://github.com/vedantpatelp2006-del/mini-project'
             }
         }
 
